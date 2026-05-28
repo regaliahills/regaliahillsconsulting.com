@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Financial Snapshot — Regalia Hills Consulting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0f1e35;
+      --navy-mid:  #1a2f4a;
+      --green:     #2e4b3f;
+      --gold:      #c19a5b;
+      --gold-lt:   #d9b97a;
+      --cream:     #f7f4ef;
+      --cream-dk:  #ede8df;
+      --white:     #ffffff;
+      --text:      #1c1c1c;
+      --muted:     #6b7280;
+      --border:    #e5e0d8;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+      --transition: 0.2s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(ellipse at 10% 10%, rgba(15,30,53,0.04) 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 90%, rgba(193,154,91,0.05) 0%, transparent 55%);
+      pointer-events: none; z-index: 0;
+    }
+
+    .page-wrap {
+      position: relative; z-index: 1;
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 52px 24px 80px;
+    }
+
+    /* ── HEADER ── */
+    .form-header {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .nav-logo {
+      display: inline-flex; align-items: center; gap: 12px;
+      text-decoration: none;
+      margin-bottom: 32px;
+    }
+
+    .nav-monogram {
+      width: 42px; height: 42px;
+      background: var(--navy);
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .nav-monogram span {
+      font-family: var(--serif);
+      font-size: 17px; font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    .nav-name {
+      text-align: left;
+    }
+
+    .nav-name-main {
+      font-family: var(--serif);
+      font-size: 19px; font-weight: 600;
+      color: var(--navy);
+      line-height: 1.1;
+    }
+
+    .nav-name-sub {
+      font-size: 10px; font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .gold-rule {
+      width: 48px; height: 1.5px;
+      background: linear-gradient(90deg, var(--navy), var(--gold));
+      margin: 0 auto 28px;
+      border-radius: 1px;
+    }
+
+    .form-header h1 {
+      font-family: var(--serif);
+      font-size: clamp(32px, 5vw, 46px);
+      font-weight: 300;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .form-header h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .intro-text {
+      font-size: 15px; font-weight: 300;
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    .time-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 500;
+      color: var(--muted);
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin-top: 20px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 40px;
+      box-shadow: 0 2px 20px rgba(15,30,53,0.06);
+      animation: fadeUp 0.6s ease 0.1s both;
+    }
+
+    @media (max-width: 600px) {
+      .form-card { padding: 28px 22px; }
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .form-section-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex; align-items: center; gap: 10px;
+      margin: 28px 0 18px;
+    }
+
+    .form-section-label:first-child { margin-top: 0; }
+
+    .form-section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── FIELDS ── */
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 580px) {
+      .field-row { grid-template-columns: 1fr; }
+    }
+
+    .field-group { margin-bottom: 18px; }
+    .field-group:last-child { margin-bottom: 0; }
+
+    label {
+      display: block;
+      font-size: 11px; font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 7px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    label .optional {
+      font-weight: 300;
+      color: #aaa;
+      font-size: 10px;
+      text-transform: none;
+      letter-spacing: 0;
+      margin-left: 4px;
+    }
+
+    label .hint {
+      display: block;
+      font-weight: 300;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: none;
+      letter-spacing: 0;
+      margin-top: 2px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 11px 14px;
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      font-family: var(--sans);
+      font-size: 14px; font-weight: 300;
+      color: var(--text);
+      outline: none;
+      transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+      -webkit-appearance: none;
+    }
+
+    input::placeholder,
+    textarea::placeholder { color: #bbb; }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--navy);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(15,30,53,0.07);
+    }
+
+    select {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-color: var(--cream);
+      padding-right: 36px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.65;
+    }
+
+    /* ── CHECKBOXES ── */
+    .check-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .check-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 14px;
+      background: var(--cream);
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-size: 13px; font-weight: 400;
+      color: var(--muted);
+      user-select: none;
+    }
+
+    .check-item:hover {
+      border-color: var(--navy);
+      background: #f0f3f7;
+      color: var(--navy);
+    }
+
+    .check-item input[type="checkbox"] {
+      width: 14px; height: 14px;
+      accent-color: var(--navy);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .check-item.checked {
+      border-color: var(--navy);
+      background: #eef1f6;
+      color: var(--navy);
+      font-weight: 500;
+    }
+
+    /* ── SUBMIT SECTION ── */
+    .submit-section {
+      background: var(--navy);
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      margin-top: 16px;
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp 0.6s ease 0.2s both;
+    }
+
+    .submit-section::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--gold), var(--green));
+    }
+
+    .submit-section h3 {
+      font-family: var(--serif);
+      font-size: 26px; font-weight: 300;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .submit-section h3 em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+
+    .submit-section p {
+      font-size: 14px; font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 28px;
+      max-width: 400px;
+      margin-left: auto; margin-right: auto;
+      line-height: 1.7;
+    }
+
+    .submit-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 44px;
+      background: var(--gold);
+      color: var(--navy);
+      font-family: var(--sans);
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 18px rgba(193,154,91,0.3);
+    }
+
+    .submit-btn:hover {
+      background: var(--gold-lt);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(193,154,91,0.4);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .privacy-note {
+      margin-top: 18px;
+      font-size: 11px; font-weight: 300;
+      color: rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── SUCCESS ── */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 80px 40px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 4px 30px rgba(15,30,53,0.08);
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .success-icon {
+      width: 60px; height: 60px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      color: var(--gold);
+      margin: 0 auto 24px;
+    }
+
+    .success-screen h2 {
+      font-family: var(--serif);
+      font-size: 32px; font-weight: 300;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .success-screen p {
+      font-size: 15px; font-weight: 300;
+      color: var(--muted);
+      max-width: 400px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    .success-sign {
+      margin-top: 20px;
+      font-family: var(--serif);
+      font-size: 15px; font-style: italic;
+      color: var(--gold);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- HEADER -->
+  <div class="form-header">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-monogram"><span>RH</span></div>
+      <div class="nav-name">
+        <div class="nav-name-main">Regalia Hills Consulting</div>
+        <div class="nav-name-sub">Outsourced CFO &amp; Strategic Finance</div>
+      </div>
+    </a>
+    <div class="gold-rule"></div>
+    <h1>Quick Financial <em>Snapshot</em></h1>
+    <p class="intro-text">Just a few quick questions to help us prepare for our first conversation — answer with whatever you know off the top of your head. We'll dig into the details together.</p>
+    <div class="time-badge">&#9201;&nbsp; About 2 minutes</div>
+  </div>
+
+  <!-- FORM -->
+  <form id="intake-form" action="https://script.google.com/a/macros/regaliahillsconsulting.com/s/AKfycbzO-z_hJ7i1CUFcK12B1Y_FH4bjrtohNQQVK1f5iuhDU1w1RQNmI7KNptKLRqN0T1k6/exec" method="POST">
+    <div class="form-card">
+
+      <!-- Section: About You -->
+      <div class="form-section-label">About You</div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label>Company Name</label>
+          <input type="text" name="company_name" placeholder="ABC Company LLC" required />
+        </div>
+        <div class="field-group">
+          <label>Your Name</label>
+          <input type="text" name="contact_name" placeholder="Jane Smith" required />
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="jane@yourcompany.com" required />
+        </div>
+        <div class="field-group">
+          <label>Location / Region</label>
+          <input type="text" name="location" placeholder="e.g. Philadelphia, PA" />
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Industry / Trade</label>
+        <input type="text" name="industry_type" placeholder="e.g. General Contractor, HVAC, Roofing, Professional Services..." />
+      </div>
+
+      <!-- Section: Your Business -->
+      <div class="form-section-label">Your Business</div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label>Annual Revenue (approximate)</label>
+          <select name="annual_revenue" required>
+            <option value="">Select range...</option>
+            <option>Under $1M</option>
+            <option>$1M – $2M</option>
+            <option>$2M – $5M</option>
+            <option>$5M – $10M</option>
+            <option>$10M – $20M</option>
+            <option>Over $20M</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Number of Employees</label>
+          <select name="employees">
+            <option value="">Select range...</option>
+            <option>1–5</option>
+            <option>6–15</option>
+            <option>16–30</option>
+            <option>31–50</option>
+            <option>50+</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Section: Your Finances -->
+      <div class="form-section-label">Your Finances</div>
+
+      <div class="field-row">
+        <div class="field-group">
+          <label>Who handles the books today?</label>
+          <select name="who_does_books" required>
+            <option value="">Select...</option>
+            <option>Owner / myself</option>
+            <option>Office manager / admin</option>
+            <option>In-house bookkeeper</option>
+            <option>Outsourced bookkeeper</option>
+            <option>CPA firm</option>
+            <option>Combination</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>How long does month-end close take?</label>
+          <select name="close_timing">
+            <option value="">Select...</option>
+            <option>About a week</option>
+            <option>2–3 weeks</option>
+            <option>A month or more</option>
+            <option>We close quarterly</option>
+            <option>No real close process</option>
+            <option>Not sure</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Who handles the company's financial strategy?</label>
+        <select name="financial_strategy">
+          <option value="">Select...</option>
+          <option>Owner / myself</option>
+          <option>Internal team member (e.g. Controller, Finance Manager)</option>
+          <option>Outsourced CFO or Fractional CFO</option>
+          <option>Our CPA handles it</option>
+          <option>No one really</option>
+        </select>
+      </div>
+
+      <!-- Section: Priorities -->
+      <div class="form-section-label">What Matters Most</div>
+
+      <div class="field-group">
+        <label>What are your biggest financial priorities right now?
+          <span class="hint">Select any that apply</span>
+        </label>
+        <div class="check-grid">
+          <label class="check-item"><input type="checkbox" name="priorities" value="Better cash flow" /> Better cash flow</label>
+          <label class="check-item"><input type="checkbox" name="priorities" value="Line of sight into profitability" /> Line of sight into profitability</label>
+          <label class="check-item"><input type="checkbox" name="priorities" value="Know which jobs make money" /> Know which jobs make money</label>
+          <label class="check-item"><input type="checkbox" name="priorities" value="Understand my margins and pricing" /> Understand my margins &amp; pricing</label>
+          <label class="check-item"><input type="checkbox" name="priorities" value="Cleaner, more reliable books" /> Cleaner, reliable books</label>
+          <label class="check-item"><input type="checkbox" name="priorities" value="Faster, timelier financials" /> Faster financials</label>
+          <label class="check-item"><input type="checkbox" name="priorities" value="Build toward an exit or sale" /> Build toward an exit or sale</label>
+          <label class="check-item"><input type="checkbox" name="priorities" value="Prepare for a loan or financing" /> Prepare for financing</label>
+          <label class="check-item"><input type="checkbox" name="priorities" value="Spend less time on admin" /> Less time on admin</label>
+          <label class="check-item"><input type="checkbox" name="priorities" value="Plan for taxes and reduce tax burden" /> Plan for taxes / reduce tax burden</label>
+        </div>
+      </div>
+
+      <div class="field-group" style="margin-bottom:0;">
+        <label>Anything else on your mind? <span class="optional">(optional)</span>
+          <span class="hint">A sentence or two about what you're hoping to get out of working together</span>
+        </label>
+        <textarea name="priorities_notes" placeholder="In your own words..."></textarea>
+      </div>
+
+    </div><!-- /form-card -->
+
+    <!-- SUBMIT -->
+    <div class="submit-section">
+      <h3>That's all — <em>thank you.</em></h3>
+      <p>We'll review your answers before our call and come prepared with thoughts specific to your business.</p>
+      <button type="submit" class="submit-btn" id="submit-btn">
+        <span id="btn-text">Submit Snapshot</span>
+        <span id="btn-arrow"> →</span>
+      </button>
+      <div class="privacy-note">&#128274;&nbsp; Your information is kept strictly confidential.</div>
+    </div>
+
+  </form>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="success-screen">
+    <div class="success-icon">✓</div>
+    <h2>Received — thank you.</h2>
+    <p>We'll review your answers and be in touch shortly. We look forward to learning more about your business and how we can help.</p>
+    <p class="success-sign">— The Regalia Hills Consulting Team</p>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<script>
+  // Checkbox highlight toggle
+  document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', function() {
+      this.closest('.check-item').classList.toggle('checked', this.checked);
+    });
+  });
+
+  // Form submission → Google Apps Script
+  const form = document.getElementById('intake-form');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const btnText = document.getElementById('btn-text');
+    const btnArrow = document.getElementById('btn-arrow');
+
+    btn.disabled = true;
+    btnText.textContent = 'Sending...';
+    btnArrow.textContent = ' ⟳';
+
+    // Build JSON from all form fields (handles multi-checkboxes)
+    const formData = new FormData(form);
+    const data = {};
+    formData.forEach((value, key) => {
+      data[key] = data[key] ? data[key] + ', ' + value : value;
+    });
+
+    try {
+      // no-cors required for Google Apps Script
+      await fetch(form.action, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      form.style.display = 'none';
+      document.getElementById('success-screen').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      btnText.textContent = 'Something went wrong — please try again';
+      btnArrow.textContent = ' ↺';
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
