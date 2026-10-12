@@ -562,126 +562,6 @@
       from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
-    /* SPLIT STAGE: hero + who this is for + the difference.
-       Base rules are the flow layout (phones, short screens, reduced motion, no JS).
-       .is-pinned is the desktop scroll stage; .is-flow-anim adds the phone tick-off. */
-    .rh-split {
-      --gold-ink: #7a5c2c;
-      --rh-pad: max(24px, calc((100vw - 1140px) / 2));
-      --rh-edge: clamp(40px, 6vw, 120px);
-      --rh-gap: clamp(32px, 4vw, 72px);
-      --rh-sheet-l: 24px;
-      --rh-sheet-r: clamp(20px, 3vw, 64px);
-      --rh-rowpad: clamp(6px, 1.25vh, 14px);
-      --rh-ease: cubic-bezier(0.23, 1, 0.32, 1);
-      padding: 0; background: var(--navy); position: relative;
-    }
-    .rh-stage { position: relative; overflow: hidden; background: var(--navy); display: flex; flex-direction: column; }
-    .rh-plane { position: absolute; pointer-events: none; }
-    .rh-plane-grid { inset: -10vh 0; background-image: linear-gradient(rgba(193,154,91,0.045) 1px, transparent 1px), linear-gradient(90deg, rgba(193,154,91,0.045) 1px, transparent 1px); background-size: 60px 60px; }
-    .rh-plane-mark { top: 96px; right: -12%; width: min(84vw, 560px); height: auto; filter: brightness(0) invert(1); opacity: 0.05; }
-    .rh-ground-left, .rh-sheet, .rh-divider-mark { display: none; }
-    .rh-head { display: contents; }
-
-    .rh-hero { order: 1; position: relative; z-index: 2; padding: 150px var(--rh-pad) 80px; }
-    .rh-intro { order: 2; position: relative; z-index: 2; background: var(--cream-dark); padding: 72px var(--rh-pad) 28px; }
-    .rh-intro-title { font-family: var(--serif); font-size: clamp(32px, 3.5vw, 48px); font-weight: 300; color: var(--navy); line-height: 1.12; margin-bottom: 16px; text-wrap: balance; }
-    .rh-intro-title em { font-style: italic; color: var(--gold-ink); }
-    .rh-intro-desc { font-size: 16px; font-weight: 300; color: var(--text-mid); line-height: 1.7; max-width: 520px; text-wrap: pretty; }
-
-    .rh-divider { order: 3; position: relative; z-index: 2; background: var(--cream-dark); padding: 14px var(--rh-pad) 10px; display: flex; justify-content: space-between; }
-    .rh-divider-line { position: absolute; top: 0; left: var(--rh-pad); right: var(--rh-pad); height: 1px; background: var(--gold); }
-    .rh-divider-label { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--navy); white-space: nowrap; }
-    .rh-label-right { color: var(--gold-ink); }
-
-    .rh-board { order: 4; position: relative; z-index: 2; background: var(--cream-dark); padding: 12px var(--rh-pad) 72px; }
-    .rh-rows { list-style: none; display: grid; gap: 22px; }
-    .rh-row { display: grid; gap: 10px; }
-    .rh-pain { font-family: var(--serif); font-size: 20px; font-weight: 400; color: rgba(15,30,53,0.7); line-height: 1.35; text-wrap: pretty; }
-    .rh-pain-text { background-image: linear-gradient(var(--gold), var(--gold)); background-repeat: no-repeat; background-position: 0 58%; background-size: 100% 2px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-    .rh-answer { position: relative; background: #fffdf9; border-radius: 4px; padding: 14px 18px 14px 50px; box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 6px 18px rgba(15,30,53,0.08); }
-    .rh-answer h3 { font-family: var(--serif); font-size: 19px; font-weight: 600; color: var(--navy); line-height: 1.25; margin-bottom: 2px; }
-    .rh-answer p { font-size: 14px; font-weight: 400; color: var(--text-mid); line-height: 1.55; text-wrap: pretty; }
-    .rh-tick { position: absolute; left: 15px; top: 15px; width: 24px; height: 24px; fill: none; stroke: var(--gold-ink); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
-    .rh-tick path { stroke-dasharray: 1; stroke-dashoffset: 0; }
-    .rh-plate-line { font-family: var(--serif); font-style: italic; font-size: 22px; font-weight: 400; color: var(--navy); margin-top: 36px; }
-    .rh-close { margin-top: 18px; }
-    .rh-double-rule { display: block; width: 100%; height: 8px; }
-    .rh-double-rule line { stroke: var(--navy); stroke-width: 1.5; stroke-dasharray: 1; stroke-dashoffset: 0; }
-    .rh-close-label { display: block; margin-top: 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-ink); }
-
-    .rh-resolve { order: 5; position: relative; z-index: 2; padding: 80px var(--rh-pad) 96px; }
-    .rh-resolve h2 { font-family: var(--serif); font-size: clamp(34px, 3.6vw, 52px); font-weight: 300; color: var(--white); line-height: 1.1; margin: 4px 0 18px; text-wrap: balance; }
-    .rh-resolve > p { font-size: 16px; font-weight: 300; color: rgba(255,255,255,0.72); line-height: 1.75; max-width: 520px; margin-bottom: 30px; text-wrap: pretty; }
-    .rh-includes { list-style: none; display: grid; gap: 16px; max-width: 520px; margin-bottom: 34px; }
-    .rh-includes li { display: flex; gap: 14px; align-items: flex-start; }
-    .rh-resolve-cta .btn-primary { display: inline-block; }
-
-    .rh-split a:focus-visible { outline: 2px solid var(--gold-lt); outline-offset: 3px; }
-
-    @media (min-width: 901px) {
-      .rh-plane-mark { right: 4%; width: 420px; }
-      .rh-row { grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-      .rh-close, .rh-plate-line { max-width: calc(50% - 24px); }
-      .rh-close { margin-left: calc(50% + 24px); margin-top: -10px; }
-    }
-    @media (max-width: 900px) {
-      .rh-hero { padding-top: 130px; padding-bottom: 64px; }
-    }
-    @media (max-width: 540px) {
-      .rh-hero .hero-headline { font-size: 38px; }
-      .rh-hero .hero-actions { flex-wrap: wrap; row-gap: 16px; }
-      .rh-intro { padding-top: 56px; }
-      .rh-resolve { padding: 64px 24px 72px; }
-    }
-
-    /* Phone tick-off: rows start open and close as they scroll into view */
-    .rh-split.is-flow-anim .rh-pain { transition: color 0.4s ease-out; }
-    .rh-split.is-flow-anim .rh-pain-text { transition: background-size 0.5s var(--rh-ease); }
-    .rh-split.is-flow-anim .rh-answer { transition: opacity 0.45s ease-out 0.25s, transform 0.45s var(--rh-ease) 0.25s; }
-    .rh-split.is-flow-anim .rh-tick path { transition: stroke-dashoffset 0.5s ease-out 0.55s; }
-    .rh-split.is-flow-anim .rh-double-rule line { transition: stroke-dashoffset 0.6s ease-out; }
-    .rh-split.is-flow-anim .rh-double-rule line + line { transition-delay: 0.15s; }
-    .rh-split.is-flow-anim .rh-close-label { transition: opacity 0.4s ease-out 0.5s; }
-    .rh-split.is-flow-anim .rh-row:not(.is-done) .rh-pain { color: var(--navy); }
-    .rh-split.is-flow-anim .rh-row:not(.is-done) .rh-pain-text { background-size: 0% 2px; }
-    .rh-split.is-flow-anim .rh-row:not(.is-done) .rh-answer { opacity: 0; transform: translateY(12px); }
-    .rh-split.is-flow-anim .rh-row:not(.is-done) .rh-tick path { stroke-dashoffset: 1; }
-    .rh-split.is-flow-anim .rh-close:not(.is-done) .rh-double-rule line { stroke-dashoffset: 1; }
-    .rh-split.is-flow-anim .rh-close:not(.is-done) .rh-close-label { opacity: 0; }
-
-    /* Desktop scroll stage. The script sets transforms and opacity from scroll progress. */
-    .rh-split.is-pinned .rh-track { height: 520vh; position: relative; }
-    .rh-split.is-pinned .rh-stage { position: sticky; top: 0; height: 100vh; display: block; }
-    .rh-split.is-pinned .rh-plane-mark { top: 50%; left: 75%; right: auto; width: min(44vw, 640px); transform: translate(-50%, -50%); opacity: 0.045; z-index: 0; }
-    .rh-split.is-pinned .rh-ground-left { display: block; position: absolute; top: 0; bottom: 0; left: 0; width: 50%; background: var(--cream-dark); transform-origin: left center; z-index: 1; }
-    .rh-split.is-pinned .rh-divider { position: absolute; top: 88px; bottom: 0; left: 50%; width: 0; padding: 0; background: none; display: block; z-index: 4; }
-    .rh-split.is-pinned .rh-divider-line { top: 0; bottom: 0; left: 0; right: auto; width: 1px; height: auto; background: linear-gradient(var(--gold), rgba(193,154,91,0.2)); }
-    .rh-split.is-pinned .rh-divider-mark { display: block; position: absolute; top: 0; left: -4px; width: 9px; height: 9px; border-radius: 50%; background: var(--gold); }
-    .rh-split.is-pinned .rh-divider-label { position: absolute; top: 22px; }
-    .rh-split.is-pinned .rh-label-left { right: 22px; }
-    .rh-split.is-pinned .rh-label-right { left: 22px; color: var(--gold); }
-
-    .rh-split.is-pinned .rh-head { display: grid; position: absolute; top: 88px; left: 0; right: 0; bottom: 0; grid-template-columns: 1fr 1fr; align-items: center; z-index: 3; }
-    .rh-split.is-pinned .rh-intro { grid-column: 1; grid-row: 1; background: none; padding: 0 var(--rh-gap) 0 var(--rh-edge); }
-    .rh-split.is-pinned .rh-hero { grid-column: 2; grid-row: 1; padding: 0 var(--rh-edge) 0 var(--rh-gap); }
-    .rh-split.is-pinned .rh-hero .hero-headline { font-size: clamp(40px, 4.2vw, 62px); }
-    .rh-split.is-pinned .rh-hero .hero-body { margin-bottom: 36px; }
-
-    .rh-split.is-pinned .rh-board { position: absolute; top: 150px; left: 0; right: 0; padding: 0; background: none; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(7, auto); z-index: 2; transform-origin: 75% 0; }
-    .rh-split.is-pinned .rh-rows, .rh-split.is-pinned .rh-row { display: contents; }
-    .rh-split.is-pinned .rh-sheet { display: block; position: absolute; grid-column: 2; grid-row: 1 / -1; top: -22px; bottom: -26px; left: var(--rh-sheet-l); right: var(--rh-sheet-r); background: #fffdf9; border-radius: 4px; box-shadow: inset 0 1px 0 #fff, 0 2px 6px rgba(5,12,24,0.22), 0 28px 56px rgba(5,12,24,0.38); }
-    .rh-split.is-pinned .rh-pain { grid-column: 1; align-self: center; color: var(--navy); font-size: clamp(17px, 2.3vh, 21px); padding: var(--rh-rowpad) var(--rh-gap) var(--rh-rowpad) var(--rh-edge); }
-    .rh-split.is-pinned .rh-answer { grid-column: 2; position: relative; z-index: 1; background: none; border-radius: 0; box-shadow: none; padding: var(--rh-rowpad) calc(var(--rh-sheet-r) + 28px) var(--rh-rowpad) calc(var(--rh-sheet-l) + 58px); border-bottom: 1px solid rgba(15,30,53,0.08); }
-    .rh-split.is-pinned .rh-answer h3 { font-size: clamp(16px, 2.1vh, 19px); }
-    .rh-split.is-pinned .rh-answer p { font-size: clamp(12.5px, 1.6vh, 14px); }
-    .rh-split.is-pinned .rh-tick { left: calc(var(--rh-sheet-l) + 22px); top: calc(var(--rh-rowpad) + 1px); }
-    .rh-split.is-pinned .rh-plate-line { grid-column: 1; grid-row: 7; max-width: none; margin: 0; padding: 16px var(--rh-gap) 0 var(--rh-edge); font-size: clamp(18px, 2.4vh, 22px); }
-    .rh-split.is-pinned .rh-close { grid-column: 2; grid-row: 7; max-width: none; margin: 0; padding: 14px calc(var(--rh-sheet-r) + 28px) 0 calc(var(--rh-sheet-l) + 58px); position: relative; z-index: 1; }
-
-    .rh-split.is-pinned .rh-resolve { position: absolute; top: 88px; bottom: 0; left: 0; width: 50%; display: flex; flex-direction: column; justify-content: center; padding: 0 var(--rh-gap) 0 var(--rh-edge); z-index: 3; }
-    .rh-split.is-pinned .rh-resolve > * { opacity: 0; }
   </style>
 </head>
 <body>
@@ -703,107 +583,110 @@
 
 <!-- ================= VIEW: OUTSOURCED ACCOUNTING (HOME) ================= -->
 <div id="view-home">
-<!-- SPLIT STAGE: hero + who this is for + the difference.
-     Desktop pins this and drives it from scroll (script at the end of the page).
-     Without JS, on phones, on short screens, and with reduced motion it reads top to bottom. -->
-<section id="rh-split" class="rh-split" aria-labelledby="rh-h1">
-  <div class="rh-track">
-    <div class="rh-stage">
-      <div class="rh-plane rh-plane-grid" aria-hidden="true"></div>
-      <img class="rh-plane rh-plane-mark" src="assets/rh-mark.png" alt="" width="1338" height="844" aria-hidden="true" />
-      <div class="rh-ground-left" aria-hidden="true"></div>
-      <div class="rh-divider" aria-hidden="true">
-        <span class="rh-divider-line"></span>
-        <span class="rh-divider-mark"></span>
-        <span class="rh-divider-label rh-label-left">Today</span>
-        <span class="rh-divider-label rh-label-right">With Regalia Hills</span>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Outsourced Accounting Services</div>
+      <h1 class="hero-headline">Your accounting department,<br><em>out of the box.</em></h1>
+      <p class="hero-body">Regalia Hills runs your back office: bookkeeping, accounts payable, payroll administration, and management reporting, handled as one system under CPA oversight for a flat monthly fee. You get current, accurate numbers you can act on.</p>
+      <div class="hero-actions">
+        <a href="#" data-view="snapshot" class="btn-primary">Get Started</a>
+        <a href="#services" class="btn-ghost">See What&#39;s Included <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
-
-      <div class="rh-head">
-        <div class="rh-hero">
-          <div class="hero-eyebrow">Outsourced Accounting Services</div>
-          <h1 class="hero-headline" id="rh-h1">Your accounting department,<br><em>out of the box.</em></h1>
-          <p class="hero-body">Regalia Hills runs your back office: bookkeeping, accounts payable, payroll administration, and management reporting, handled as one system under CPA oversight for a flat monthly fee. You get current, accurate numbers you can act on.</p>
-          <div class="hero-actions">
-            <a href="#" data-view="snapshot" class="btn-primary">Get Started</a>
-            <a href="#services" class="btn-ghost">See What&#39;s Included <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </div>
-        </div>
-        <div class="rh-intro">
-          <h2 class="rh-intro-title">The back office shouldn&#39;t<br><em>run on you.</em></h2>
-          <p class="rh-intro-desc">We built our accounting services for owners who are tired of chasing their own books. If any of these hit close to home, read on.</p>
-        </div>
+    </div>
+    <div class="hero-card reveal">
+      <div class="hero-card-label">Every Tier Includes</div>
+      <div class="inc-item">
+        <div class="inc-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9.5l4 4 8-9" stroke="#C19A5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="inc-text"><strong>CPA Oversight</strong><span>A licensed CPA reviews every monthly close before it reaches you.</span></div>
       </div>
-
-      <div class="rh-board">
-        <div class="rh-sheet" aria-hidden="true"></div>
-        <ul class="rh-rows">
-          <li class="rh-row">
-            <p class="rh-pain"><span class="rh-pain-text">My books are always weeks, sometimes months, behind</span></p>
-            <div class="rh-answer">
-              <svg class="rh-tick" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M3.5 13.2c2 1.3 3.6 3 5 5.3C11.6 12 15.8 7 21 3.5"/></svg>
-              <h3>Monthly Close</h3>
-              <p>Reconciliations and a disciplined month-end close, delivered on a schedule you can set your watch to.</p>
-            </div>
-          </li>
-          <li class="rh-row">
-            <p class="rh-pain"><span class="rh-pain-text">I don&#39;t trust the numbers enough to make decisions with them</span></p>
-            <div class="rh-answer">
-              <svg class="rh-tick" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M3.5 13.2c2 1.3 3.6 3 5 5.3C11.6 12 15.8 7 21 3.5"/></svg>
-              <h3>Cash or Accrual, Done Right</h3>
-              <p>Statements that show what actually happened, organized for management decisions as well as year-end compliance.</p>
-            </div>
-          </li>
-          <li class="rh-row">
-            <p class="rh-pain"><span class="rh-pain-text">Vendor bills live in my inbox, and payments slip through the cracks</span></p>
-            <div class="rh-answer">
-              <svg class="rh-tick" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M3.5 13.2c2 1.3 3.6 3 5 5.3C11.6 12 15.8 7 21 3.5"/></svg>
-              <h3>Accounts Payable</h3>
-              <p>Vendors get paid on time, and every payment has a clean approval trail.</p>
-            </div>
-          </li>
-          <li class="rh-row">
-            <p class="rh-pain"><span class="rh-pain-text">Payroll runs, but nobody really owns it</span></p>
-            <div class="rh-answer">
-              <svg class="rh-tick" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M3.5 13.2c2 1.3 3.6 3 5 5.3C11.6 12 15.8 7 21 3.5"/></svg>
-              <h3>Payroll Administration</h3>
-              <p>We run payroll on the platform you already use, so payday is never your problem.</p>
-            </div>
-          </li>
-          <li class="rh-row">
-            <p class="rh-pain"><span class="rh-pain-text">My bookkeeper works alone, and nobody reviews the work</span></p>
-            <div class="rh-answer">
-              <svg class="rh-tick" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M3.5 13.2c2 1.3 3.6 3 5 5.3C11.6 12 15.8 7 21 3.5"/></svg>
-              <h3>A Reviewed Close</h3>
-              <p>A CPA reviews every month-end close before your financials reach your desk.</p>
-            </div>
-          </li>
-          <li class="rh-row">
-            <p class="rh-pain"><span class="rh-pain-text">Every tax season starts with an expensive cleanup</span></p>
-            <div class="rh-answer">
-              <svg class="rh-tick" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M3.5 13.2c2 1.3 3.6 3 5 5.3C11.6 12 15.8 7 21 3.5"/></svg>
-              <h3>A Clean Tax Handoff</h3>
-              <p>Your tax preparer gets organized, reconciled records, so there&#39;s no year-end scramble or cleanup bill.</p>
-            </div>
-          </li>
-        </ul>
-        <p class="rh-plate-line">We take all of this off your plate.</p>
-        <div class="rh-close">
-          <svg class="rh-double-rule" viewBox="0 0 100 8" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="1.5" x2="100" y2="1.5" pathLength="1"/><line x1="0" y1="6.5" x2="100" y2="6.5" pathLength="1"/></svg>
-          <span class="rh-close-label">Closed and CPA reviewed</span>
-        </div>
+      <div class="inc-item">
+        <div class="inc-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2.5" y="3" width="13" height="12" rx="1.5" stroke="#C19A5B" stroke-width="1.4"/><path d="M2.5 7h13M6.5 10.5h5" stroke="#C19A5B" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+        <div class="inc-text"><strong>Client Portal</strong><span>Reports, documents, and requests in one secure place.</span></div>
       </div>
+      <div class="inc-item">
+        <div class="inc-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="#C19A5B" stroke-width="1.4"/><path d="M9 5.5v7M11.2 7.2c0-.9-1-1.5-2.2-1.5s-2.2.6-2.2 1.5 1 1.3 2.2 1.6c1.2.2 2.2.7 2.2 1.6s-1 1.5-2.2 1.5-2.2-.6-2.2-1.5" stroke="#C19A5B" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+        <div class="inc-text"><strong>Flat Monthly Fee</strong><span>A set price, agreed in your proposal. No hourly billing.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="rh-resolve">
-        <div class="eng-eyebrow">The Regalia Hills Difference</div>
-        <h2>Outsourced accounting,<br>done right.</h2>
-        <p>You get a complete accounting department without a full-time hire. Every close is reconciled and reviewed, so you can make decisions from it. As your needs grow, the same team can take on the whole finance function, up to CFO-level leadership.</p>
-        <ul class="rh-includes" aria-label="Every tier includes">
-          <li><div class="inc-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9.5l4 4 8-9" stroke="#C19A5B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="inc-text"><strong>CPA Oversight</strong><span>A licensed CPA reviews every monthly close before it reaches you.</span></div></li>
-          <li><div class="inc-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2.5" y="3" width="13" height="12" rx="1.5" stroke="#C19A5B" stroke-width="1.4"/><path d="M2.5 7h13M6.5 10.5h5" stroke="#C19A5B" stroke-width="1.4" stroke-linecap="round"/></svg></div><div class="inc-text"><strong>Client Portal</strong><span>Reports, documents, and requests in one secure place.</span></div></li>
-          <li><div class="inc-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="#C19A5B" stroke-width="1.4"/><path d="M9 5.5v7M11.2 7.2c0-.9-1-1.5-2.2-1.5s-2.2.6-2.2 1.5 1 1.3 2.2 1.6c1.2.2 2.2.7 2.2 1.6s-1 1.5-2.2 1.5-2.2-.6-2.2-1.5" stroke="#C19A5B" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="inc-text"><strong>Flat Monthly Fee</strong><span>A set price, agreed in your proposal. No hourly billing.</span></div></li>
-        </ul>
-        <div class="rh-resolve-cta"><a href="#" data-view="snapshot" class="btn-primary">Get Started</a></div>
+<!-- WHO THIS IS FOR -->
+<section id="soundfamiliar">
+  <div class="section-inner">
+    <div class="eyebrow">Who This Is For</div>
+    <h2 class="section-title">The back office shouldn&#39;t<br><em>run on you.</em></h2>
+    <p class="section-desc">We built our accounting services for owners who are tired of chasing their own books. If any of these hit close to home, read on.</p>
+    <div class="pain-grid reveal">
+      <div class="pain-card"><div class="pain-check">&#10003;</div><div class="pain-text">My books are always weeks, sometimes months, behind</div></div>
+      <div class="pain-card"><div class="pain-check">&#10003;</div><div class="pain-text">I don&#39;t trust the numbers enough to make decisions with them</div></div>
+      <div class="pain-card"><div class="pain-check">&#10003;</div><div class="pain-text">Vendor bills live in my inbox, and payments slip through the cracks</div></div>
+      <div class="pain-card"><div class="pain-check">&#10003;</div><div class="pain-text">Payroll runs, but nobody really owns it</div></div>
+      <div class="pain-card"><div class="pain-check">&#10003;</div><div class="pain-text">My bookkeeper works alone, and nobody reviews the work</div></div>
+      <div class="pain-card"><div class="pain-check">&#10003;</div><div class="pain-text">Every tax season starts with an expensive cleanup</div></div>
+    </div>
+    <div class="pain-cta reveal">
+      <p>We take all of this off your plate.</p>
+      <a href="#" data-view="snapshot" class="btn-primary" style="background:var(--navy);color:var(--white);display:inline-block;">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- CPA OVERSIGHT -->
+<section id="oversight" style="background: var(--navy);">
+  <div class="framework-inner">
+    <div class="framework-header reveal">
+      <div class="eng-eyebrow">The Regalia Hills Difference</div>
+      <div class="eng-divider"></div>
+      <h2>Outsourced accounting,<br>done right.</h2>
+      <p>You get a complete accounting department without a full-time hire. Every close is reconciled and reviewed, so you can make decisions from it. As your needs grow, the same team can take on the whole finance function, up to CFO-level leadership.</p>
+    </div>
+    <div class="reveal">
+      <div class="pillars-4">
+        <div class="pillar">
+          <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="22" r="21" stroke="#C19A5B" stroke-width="1.5" opacity="0.3"/>
+            <path d="M13 22.5l6 6 12-13" stroke="#C19A5B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>A Reviewed Close</h3>
+          <p>A CPA reviews every month-end close before your financials reach your desk.</p>
+          <div class="pillar-accent"></div>
+        </div>
+        <div class="pillar">
+          <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="22" r="21" stroke="#C19A5B" stroke-width="1.5" opacity="0.3"/>
+            <path d="M22 11v22M13 15h18" stroke="#C19A5B" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M13 15l-3.5 7h7L13 15zM31 15l-3.5 7h7L31 15z" stroke="#C19A5B" stroke-width="1.3" stroke-linejoin="round"/>
+          </svg>
+          <h3>Cash or Accrual, Done Right</h3>
+          <p>We apply cash or accrual basis correctly, so your statements show what actually happened.</p>
+          <div class="pillar-accent"></div>
+        </div>
+        <div class="pillar">
+          <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="22" r="21" stroke="#C19A5B" stroke-width="1.5" opacity="0.3"/>
+            <circle cx="22" cy="22" r="8" stroke="#C19A5B" stroke-width="1.5"/>
+            <circle cx="22" cy="22" r="1.8" fill="#C19A5B"/>
+            <path d="M22 10v4M22 30v4M10 22h4M30 22h4" stroke="#C19A5B" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <h3>Built for Decisions</h3>
+          <p>Books organized for management decisions as well as year-end compliance.</p>
+          <div class="pillar-accent"></div>
+        </div>
+        <div class="pillar">
+          <svg class="pillar-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="22" cy="22" r="21" stroke="#C19A5B" stroke-width="1.5" opacity="0.3"/>
+            <path d="M12 16a2 2 0 012-2h5l2 3h9a2 2 0 012 2v11a2 2 0 01-2 2H14a2 2 0 01-2-2V16z" stroke="#C19A5B" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M18.5 24.5l2.5 2.5 5-5" stroke="#C19A5B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h3>A Clean Tax Handoff</h3>
+          <p>Your tax preparer gets organized, reconciled records, so there&#39;s no year-end scramble or cleanup bill.</p>
+          <div class="pillar-accent"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -1607,149 +1490,6 @@
     }
   });
 
-})();
-</script>
-<script>
-// Split stage. Desktop: the stage pins and scroll progress (0..1) drives every layer.
-// Phones, short screens: normal flow, each row ticks off as it scrolls into view.
-// Reduced motion: normal flow, finished state, no animation.
-(function() {
-  const root = document.getElementById("rh-split");
-  if (!root) return;
-  const $ = s => root.querySelector(s);
-  const $$ = s => [...root.querySelectorAll(s)];
-  const track = $(".rh-track"), stage = $(".rh-stage");
-  const grid = $(".rh-plane-grid"), mark = $(".rh-plane-mark"), ground = $(".rh-ground-left");
-  const divider = $(".rh-divider"), dividerLine = $(".rh-divider-line"), dividerDot = $(".rh-divider-mark"), labelLeft = $(".rh-label-left"), labelRight = $(".rh-label-right");
-  const head = $(".rh-head"), board = $(".rh-board"), plate = $(".rh-plate-line"), close = $(".rh-close");
-  const rules = $$(".rh-double-rule line"), closeLabel = $(".rh-close-label");
-  const resolveItems = [...$(".rh-resolve").children];
-  const rows = $$(".rh-row").map(li => ({
-    li, pain: li.querySelector(".rh-pain"), strike: li.querySelector(".rh-pain-text"),
-    answer: li.querySelector(".rh-answer"), tick: li.querySelector(".rh-tick path")
-  }));
-  const styled = [grid, mark, ground, divider, dividerLine, dividerDot, labelLeft, labelRight, head, board, plate, closeLabel,
-    ...rules, ...resolveItems, ...rows.flatMap(r => [r.pain, r.strike, r.answer, r.tick])];
-  const reduce = matchMedia("(prefers-reduced-motion: reduce)");
-  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-  const seg = (p, a, b) => clamp((p - a) / (b - a), 0, 1);
-  const out = t => 1 - Math.pow(1 - t, 3);
-  let mode = "", queued = false, observer = null;
-
-  function trackMetrics() {
-    const total = track.offsetHeight - innerHeight;
-    return total > 0 ? { total, top: track.getBoundingClientRect().top + scrollY } : null;
-  }
-
-  function render() {
-    queued = false;
-    if (mode !== "pinned") return;
-    const m = trackMetrics();
-    if (!m) return;
-    const p = clamp((scrollY - m.top) / m.total, 0, 1);
-    const vh = innerHeight / 100, half = stage.clientWidth / 2;
-
-    // Depth planes move at different rates: grid slowest, mark, then the copy and the ledger.
-    grid.style.transform = `translateY(${-6 * vh * p}px)`;
-    const mk = seg(p, 0, 0.6);
-    mark.style.transform = `translate(-50%, -50%) translateY(${-18 * vh * mk}px) scale(${1 + 0.08 * mk})`;
-    const h = seg(p, 0.03, 0.16);
-    head.style.opacity = 1 - h;
-    head.style.transform = `translateY(${-14 * vh * h}px)`;
-    head.style.pointerEvents = h > 0.5 ? "none" : "";
-    const b = out(seg(p, 0, 0.16));
-    // The ledger starts as a sliver along the bottom edge, below the hero buttons.
-    const rest = board.offsetTop, start = Math.max(0, innerHeight * 0.94 - rest);
-    board.style.transform = `translateY(${(1 - b) * start}px) rotate(${(1 - b) * -1.2}deg)`;
-
-    // Pains arrive one at a time, then each is struck and answered with a tick.
-    const leave = seg(p, 0.62, 0.68);
-    rows.forEach((r, i) => {
-      const a = out(seg(p, 0.08 + i * 0.033, 0.12 + i * 0.033));
-      const s0 = 0.30 + i * 0.04;
-      const s = seg(p, s0, s0 + 0.016);
-      r.strike.style.backgroundSize = `${s * 100}% 2px`;
-      r.pain.style.opacity = a * (1 - 0.3 * s) * (1 - leave);
-      r.pain.style.transform = `translate(${-24 * leave}px, ${14 * (1 - a)}px)`;
-      const t = out(seg(p, s0 + 0.01, s0 + 0.03));
-      r.answer.style.opacity = t;
-      r.answer.style.transform = `translateX(${12 * (1 - t)}px)`;
-      r.tick.style.strokeDashoffset = 1 - seg(p, s0 + 0.022, s0 + 0.04);
-    });
-    plate.style.opacity = seg(p, 0.53, 0.56) * (1 - leave);
-
-    // The close: double rule, then the divider sweeps left and the navy side takes the page.
-    rules[0].style.strokeDashoffset = 1 - seg(p, 0.61, 0.65);
-    rules[1].style.strokeDashoffset = 1 - seg(p, 0.63, 0.67);
-    closeLabel.style.opacity = seg(p, 0.65, 0.69);
-    const c = out(seg(p, 0.68, 0.82));
-    ground.style.transform = `scaleX(${1 - c})`;
-    divider.style.transform = `translateX(${-half * c}px)`;
-    labelLeft.style.opacity = 1 - seg(p, 0.66, 0.7);
-    labelRight.style.opacity = 1 - seg(p, 0.84, 0.9);
-    const fade = 1 - seg(p, 0.82, 0.88);
-    dividerLine.style.opacity = fade;
-    dividerDot.style.opacity = fade;
-    dividerDot.style.transform = `translateY(${seg(p, 0, 0.66) * Math.max(0, divider.clientHeight - 9)}px)`;
-    resolveItems.forEach((el, k) => {
-      const t = out(seg(p, 0.78 + k * 0.025, 0.83 + k * 0.025));
-      el.style.opacity = t;
-      el.style.transform = `translateY(${16 * (1 - t)}px)`;
-      el.style.pointerEvents = t > 0.5 ? "" : "none";
-    });
-  }
-
-  // Center the ledger in the space under the nav. Layout work, so only on mode change and resize.
-  function layout() {
-    if (mode !== "pinned") return;
-    board.style.top = "";
-    board.style.top = Math.max(136, 88 + (innerHeight - 88 - board.offsetHeight) / 2) + "px";
-  }
-
-  function request() {
-    if (!queued) { queued = true; requestAnimationFrame(render); }
-  }
-
-  function observeFlow() {
-    if (observer) { observer.disconnect(); observer = null; }
-    if (mode !== "flow") return;
-    observer = new IntersectionObserver(entries => entries.forEach(en => {
-      if (en.isIntersecting) { en.target.classList.add("is-done"); observer.unobserve(en.target); }
-    }), { threshold: 0.6 });
-    rows.forEach(r => observer.observe(r.li));
-    observer.observe(close);
-  }
-
-  function setMode() {
-    const next = reduce.matches ? "static" : (innerWidth > 900 && innerHeight >= 640 ? "pinned" : "flow");
-    if (next === mode) { layout(); request(); return; }
-    mode = next;
-    root.classList.toggle("is-pinned", mode === "pinned");
-    root.classList.toggle("is-flow-anim", mode === "flow");
-    styled.forEach(el => el.removeAttribute("style"));
-    rows.forEach(r => r.li.classList.remove("is-done"));
-    close.classList.remove("is-done");
-    observeFlow();
-    layout();
-    request();
-  }
-
-  // Keyboard focus inside the stage jumps the scroll to where that content is visible.
-  root.addEventListener("focusin", e => {
-    if (mode !== "pinned") return;
-    const m = trackMetrics();
-    if (!m) return;
-    const at = head.contains(e.target) ? 0 : (e.target.closest(".rh-resolve") ? 0.95 : null);
-    if (at === null) return;
-    const y = m.top + at * m.total;
-    if (Math.abs(scrollY - y) > 4) window.scrollTo({ top: y, behavior: "instant" });
-  });
-
-  addEventListener("scroll", request, { passive: true });
-  addEventListener("resize", setMode);
-  reduce.addEventListener("change", setMode);
-  document.querySelectorAll("[data-view]").forEach(a => a.addEventListener("click", () => setTimeout(setMode, 120)));
-  setMode();
 })();
 </script>
 </body>
