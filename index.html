@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Regalia Hills Consulting | Outsourced Accounting &amp; Advisory</title>
 <meta name="description" content="CPA-led outsourced accounting and advisory for owner-led businesses in Greater Philadelphia. Accurate books, CFO-level strategy, and modern systems. Start with a free review of your books.">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Permanent+Marker&display=swap">
 <style>
 /* Layout: a reviewed workpaper. White paper, navy ink, left-aligned on one column grid with hairline rules; the green review tick is the only decoration. Single light theme by choice (brand site). */
 :root{
   --paper:#FFFFFF; --wash:#F1F4F7; --ink:#0F1E35; --body:#35425A; --muted:#647089; --rule:#D3D9E1;
   --tick:#1B7A55; --tick-wash:#E4F1EA; --flag:#B4541A; --gold:#A8843F;
   --on-ink:#F3F6FA; --on-ink-muted:#A9B6C9; --ink-2:#182B49; --ink-rule:#2C4064;
+  --gold-on-ink:#C9A35A;
   --todo-bg:#FFF3D0; --todo-fg:#6E4A00; --todo-rule:#D9A21B;
   --display:"Archivo","Arial Narrow",Arial,sans-serif;
   --text:"IBM Plex Sans","Segoe UI",Arial,sans-serif;
@@ -362,6 +363,51 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .rows small{color:var(--muted);font-size:14px}
 @media (max-width:860px){#cf.auto .on .bar{animation:none}}
 @media (prefers-reduced-motion:reduce){.bar{opacity:0}}
+
+/* ===== Design system accents ===== */
+.rh-goldrule{width:56px;height:2px;background:var(--gold-on-ink);border:0;margin:0 0 4px}
+.nav ul a,.foot nav a,.slipcta a:not(.btn){text-decoration:none;background-image:linear-gradient(var(--gold),var(--gold));background-size:0 2px;background-position:0 100%;background-repeat:no-repeat;padding-bottom:3px;transition:background-size .35s ease}
+.nav ul a:hover,.foot nav a:hover,.slipcta a:not(.btn):hover,.nav ul a:focus-visible,.foot nav a:focus-visible{background-size:100% 2px;text-decoration:none}
+@media (prefers-reduced-motion:reduce){.nav ul a,.foot nav a,.slipcta a:not(.btn){transition:none}}
+
+/* "What's in your box?" drawing */
+.hero .in{position:relative}
+.wbox{margin:0 0 8px;width:280px;max-width:100%;transform:rotate(-4deg);transform-origin:50% 60%}
+.wbox svg{display:block;width:100%;height:auto;overflow:visible}
+@media (min-width:1041px){
+  .wbox{position:absolute;right:calc(max(24px, env(safe-area-inset-right, 0px)) + 35px);top:0;margin:0}
+  .hero-head{max-width:calc(100% - 400px)}
+}
+@media (max-width:560px){.wbox{width:220px}}
+.wbox .rough{filter:url(#wb-rough)}
+.wbox .ink{stroke:var(--ink);stroke-width:4;stroke-linejoin:round;stroke-linecap:round;fill:var(--paper)}
+.wbox .inner,.wbox .side{fill:url(#wb-hatch)}
+.wbox .shade{fill:url(#wb-hatch-lt);stroke:none}
+.wbox .hl{stroke:var(--ink);stroke-width:1.4}
+.wbox .hl.lt{stroke-width:1}
+.wbox .ln{fill:none;stroke:var(--ink);stroke-width:3.4;stroke-linecap:round}
+.wbox .ln.thin{stroke-width:1.8}
+.wbox .ck{fill:none;stroke:var(--ink);stroke-width:5.4;stroke-linecap:round;stroke-linejoin:round}
+.wbox .mk{font-family:"Permanent Marker","Comic Sans MS","Marker Felt",cursive;fill:var(--ink)}
+.wbox .lbl{letter-spacing:.02em}
+.wbox .big{font-size:38px}
+.wbox .ttl{transform:skewX(-7deg);transform-box:fill-box;transform-origin:50% 50%}
+.wbox .swoosh{fill:var(--ink);stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.wbox .pp{transform-box:fill-box;transform-origin:50% 100%}
+@media (prefers-reduced-motion:no-preference){.wbox .pp{transition:transform .55s cubic-bezier(.3,1.4,.5,1)}}
+/* a group with nothing picked sinks into the box */
+.wbox .pp.out{transform:translateY(70px)}
+
+/* hand-drawn underline */
+.hdl{position:relative;white-space:nowrap;color:var(--ink)}
+.hdl .hd{position:absolute;left:-2px;right:-2px;bottom:-9px;width:calc(100% + 4px);height:14px;overflow:visible;pointer-events:none}
+.hdl .hd path{fill:none;stroke:var(--ink);stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;display:none;stroke-dasharray:1;stroke-dashoffset:0}
+.hdl .hd path.hd-d1,.hdl .hd path.hd-d2{display:inline;stroke-width:2}
+@media (prefers-reduced-motion:no-preference){
+  .hdl .hd path{animation:hddraw .9s .5s cubic-bezier(.6,.1,.3,1) both}
+  .hdl .hd .hd-d2{animation-delay:.85s}
+}
+@keyframes hddraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
 </style>
 </head>
 <body>
@@ -384,10 +430,67 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <main id="top">
 <section class="hero"><div class="in">
+  <figure class="wbox" role="img" aria-label="A hand-drawn open box holding three papers labeled Accounting, Advisory and Systems. The box reads What's in your box?">
+<svg viewBox="0 0 384 256" aria-hidden="true">
+<defs>
+  <filter id="wb-rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="11"/><feDisplacementMap in="SourceGraphic" scale="2"/></filter>
+  <pattern id="wb-hatch" width="4.5" height="4.5" patternUnits="userSpaceOnUse" patternTransform="rotate(-55)"><line x1="0" y1="0" x2="0" y2="4.5" class="hl"/></pattern>
+  <pattern id="wb-hatch-lt" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-55)"><line x1="0" y1="0" x2="0" y2="6" class="hl lt"/></pattern>
+  <clipPath id="wb-clip"><rect x="-200" y="-300" width="784" height="522"/></clipPath>
+</defs>
+<g class="rough">
+  <path class="ink flap" d="M50 106 L6 80 L34 60 L72 92 Z"/>
+  <path class="shade" d="M50 106 L22 89 L30 82 L60 98 Z"/>
+  <path class="ink flap" d="M340 106 L380 80 L350 60 L314 92 Z"/>
+  <path class="shade" d="M340 106 L366 89 L356 82 L328 98 Z"/>
+  <path class="ink inner" d="M50 106 L72 92 L314 92 L340 106 L325 111 L64 111 Z"/>
+  <g clip-path="url(#wb-clip)">
+    <g class="pp" data-g="adv"><g transform="rotate(-2 195 85)">
+    <rect class="ink pap" x="150" y="26" width="90" height="118"/>
+    <rect class="shade" x="152" y="30" width="9" height="112"/>
+    <rect class="shade" x="233" y="76" width="5" height="66"/>
+    <text class="mk lbl" x="198" y="49" text-anchor="middle" font-size="15" textLength="66" lengthAdjust="spacingAndGlyphs">ADVISORY</text>
+    <path class="ln" d="M168 61 h56 M172 71 h48 M170 81 h50"/>
+    <path class="ck" d="M191 92 l9 10 l20 -23"/>
+  </g></g>
+    <g class="pp" data-g="acct"><g transform="rotate(-12 100 93)">
+    <rect class="ink pap" x="52" y="34" width="96" height="118"/>
+    <rect class="shade" x="54" y="38" width="9" height="112"/>
+    <rect class="shade" x="141" y="84" width="5" height="66"/>
+    <text class="mk lbl" x="103" y="57" text-anchor="middle" font-size="13.5" textLength="72" lengthAdjust="spacingAndGlyphs">ACCOUNTING</text>
+    <path class="ln" d="M70 69 h62 M74 79 h54 M72 89 h56"/>
+    <path class="ck" d="M96 100 l9 10 l20 -23"/>
+  </g></g>
+    <g class="pp" data-g="sys"><g transform="rotate(7 287 79)">
+    <rect class="ink pap" x="240" y="20" width="94" height="118"/>
+    <rect class="shade" x="242" y="24" width="9" height="112"/>
+    <rect class="shade" x="327" y="70" width="5" height="66"/>
+    <text class="mk lbl" x="290" y="43" text-anchor="middle" font-size="15" textLength="70" lengthAdjust="spacingAndGlyphs">SYSTEMS</text>
+    <path class="ln" d="M258 55 h60 M262 65 h52 M260 75 h54"/>
+    <path class="ck" d="M283 86 l9 10 l20 -23"/>
+  </g></g>
+  </g>
+  <path class="ink side" d="M50 106 L64 111 L64 222 L52 213 Z"/>
+  <path class="ink side" d="M340 106 L325 111 L325 222 L338 213 Z"/>
+  <path class="ink front" d="M64 111 L174 111 Q192 130 210 111 L325 111 L325 222 L64 222 Z"/>
+  <path class="shade lt" d="M67 114 L80 114 L80 219 L67 219 Z"/>
+  <path class="ink notch" d="M176 114 Q192 127 208 114"/>
+  <path class="ln" d="M34 140 l-10 -7 M28 156 l-14 -2 M32 172 l-12 6 M352 140 l10 -7 M358 156 l14 -2 M354 172 l12 6"/>
+  <path class="ln thin" d="M40 222 l10 -9 M36 216 l10 -10 M46 226 l8 -7 M54 227 l6 -5 M334 227 l6 -6 M340 222 l9 -9 M344 216 l10 -10 M66 228 h256 M90 233 h50 M170 233 h110"/>
+</g>
+<g class="ttl">
+  <text class="mk big" x="194" y="156" text-anchor="middle" textLength="176" lengthAdjust="spacingAndGlyphs">WHAT'S IN</text>
+  <text class="mk big" x="194" y="196" text-anchor="middle" textLength="222" lengthAdjust="spacingAndGlyphs">YOUR BOX?</text>
+  <path class="swoosh" d="M92 212 C 150 207, 230 204, 302 202 C 236 207, 156 212, 94 216 Z"/>
+</g>
+</svg></figure>
   <div class="hero-head">
     <p class="label">For owner-led businesses · Greater Philadelphia</p>
     <h1>Your accounting department in a box.</h1>
-    <p class="lede">We work with owner-led businesses as part of the team. Whatever you need for accounting and finance, we can do it. Pick what you need and watch your department take shape.</p>
+    <p class="lede">We work with <span class="hdl">owner-led businesses<svg class="hd" viewBox="0 0 200 22" preserveAspectRatio="none" aria-hidden="true">
+<path class="hd-d1" pathLength="1" d="M3 9 C 60 6, 140 5, 197 8"/>
+<path class="hd-d2" pathLength="1" d="M12 16 C 70 13, 130 12, 186 14"/>
+</svg></span> as part of the team. Whatever you need for accounting and finance, we can do it. Pick what you need and watch your department take shape.</p>
   </div>
   <div class="build" id="build">
     <div class="pick">
@@ -481,7 +584,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <section class="band ink" id="reporting"><div class="in"><div class="rep">
   <div class="copy">
-    <p class="label">Reporting</p>
+    <hr class="rh-goldrule"><p class="label">Reporting</p>
     <h2>Numbers you can run the business from</h2>
     <p>Every client gets a reporting dashboard connected to their QuickBooks. It puts the numbers that matter in front of you each month, ready for the decisions you're facing.</p>
     <ul class="pts">
@@ -587,7 +690,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <section class="band ink" id="start"><div class="in"><div class="close">
   <div class="copy">
-    <h2>Start with a free review of your books.</h2>
+    <hr class="rh-goldrule"><h2>Start with a free review of your books.</h2>
     <p class="lede" style="color:var(--on-ink-muted)">Free, and the findings are yours to keep. It starts with a 30-minute conversation about the business and where you want to take it.</p>
     <div class="cta"><a class="btn" href="snapshot.html">Start a free books review</a></div>
   </div>
@@ -646,5 +749,16 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 })();
 </script>
 
+<script>
+(function(){
+  var wb=document.querySelector('.wbox'),build=document.getElementById('build'),wide=window.matchMedia('(min-width: 1041px)');
+  function place(){ wb.style.top = wide.matches ? Math.max(0, build.offsetTop - wb.getBoundingClientRect().height - 2) + 'px' : ''; }
+  place(); window.addEventListener('resize',place); window.addEventListener('load',place); if(document.fonts)document.fonts.ready.then(place);
+  var boxes=[].slice.call(document.querySelectorAll('#build .grp input'));
+  function picks(){ ['acct','adv','sys'].forEach(function(g){ var on=boxes.some(function(b){return b.dataset.g===g&&b.checked;}); wb.querySelector('.pp[data-g="'+g+'"]').classList.toggle('out',!on); }); }
+  new MutationObserver(picks).observe(document.getElementById('slip-n'),{childList:true,characterData:true,subtree:true});
+  picks();
+})();
+</script>
 </body>
 </html>
