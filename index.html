@@ -372,7 +372,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 /* "What's in your box?" drawing */
 .hero .in{position:relative}
-.wbox{margin:0 0 8px;width:280px;max-width:100%;transform:rotate(-4deg);transform-origin:50% 60%}
+.wbox{margin:0 0 24px;width:280px;max-width:100%;transform:rotate(-4deg);transform-origin:50% 60%}
 .wbox svg{display:block;width:100%;height:auto;overflow:visible}
 @media (min-width:1041px){
   .wbox{position:absolute;right:calc(max(24px, env(safe-area-inset-right, 0px)) + 35px);top:0;margin:0}
@@ -430,6 +430,14 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 <main id="top">
 <section class="hero"><div class="in">
+  <div class="hero-head">
+    <p class="label">For owner-led businesses · Greater Philadelphia</p>
+    <h1>Your accounting department in a box.</h1>
+    <p class="lede">We work with <span class="hdl">owner-led businesses<svg class="hd" viewBox="0 0 200 22" preserveAspectRatio="none" aria-hidden="true">
+<path class="hd-d1" pathLength="1" d="M3 9 C 60 6, 140 5, 197 8"/>
+<path class="hd-d2" pathLength="1" d="M12 16 C 70 13, 130 12, 186 14"/>
+</svg></span> as part of the team. Whatever you need for accounting and finance, we can do it. Pick what you need and watch your department take shape.</p>
+  </div>
   <figure class="wbox" role="img" aria-label="A hand-drawn open box holding three papers labeled Accounting, Advisory and Systems. The box reads What's in your box?">
 <svg viewBox="0 0 384 256" aria-hidden="true">
 <defs>
@@ -484,14 +492,6 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <path class="swoosh" d="M92 212 C 150 207, 230 204, 302 202 C 236 207, 156 212, 94 216 Z"/>
 </g>
 </svg></figure>
-  <div class="hero-head">
-    <p class="label">For owner-led businesses · Greater Philadelphia</p>
-    <h1>Your accounting department in a box.</h1>
-    <p class="lede">We work with <span class="hdl">owner-led businesses<svg class="hd" viewBox="0 0 200 22" preserveAspectRatio="none" aria-hidden="true">
-<path class="hd-d1" pathLength="1" d="M3 9 C 60 6, 140 5, 197 8"/>
-<path class="hd-d2" pathLength="1" d="M12 16 C 70 13, 130 12, 186 14"/>
-</svg></span> as part of the team. Whatever you need for accounting and finance, we can do it. Pick what you need and watch your department take shape.</p>
-  </div>
   <div class="build" id="build">
     <div class="pick">
       <div class="presets" role="group" aria-label="Start from a preset"><span class="how"><b>Build yours.</b> Start from a preset, then tick or untick anything.</span><button type="button" class="pre" data-pre="books">Just the accounting</button><button type="button" class="pre" data-pre="advice">Just advisory</button><button type="button" class="pre" data-pre="whole">The whole department</button><button type="button" class="pre" data-pre="none">Clear</button></div>
